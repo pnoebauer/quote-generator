@@ -84,6 +84,25 @@ button:active {
   font-size: 1.5rem;
 }
 
+.loader {
+  position: fixed;
+  height: 120px;
+  width: 120px;
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #333;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* Media query: tablet or smaller */
 @media screen and (max-width: 1000px) {
   .quote-container {

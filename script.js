@@ -3,12 +3,26 @@ const quoteText = document.getElementById('quote');
 const authorText = document.getElementById('author');
 const twitterButton = document.getElementById('twitter');
 const newQuoteButton = document.getElementById('new-quote');
+const spinner = document.getElementById('loader');
+
+function showSpinner() {
+    spinner.hidden = false;
+    quoteContainer.hidden = true;
+}
+
+function hideSpinner() {
+    if(!spinner.hidden) {
+        spinner.hidden = true;
+        quoteContainer.hidden = false;
+    }
+}
 
 //API sometimes returns errors; run additional requests
 let iteration = 0;
 
 // Get Quote from API
 async function getQuote() {
+    showSpinner();
 
     // console.log(iteration, this, newQuoteButton, this===newQuoteButton);
     //reset iteration to zero after each click
@@ -41,6 +55,8 @@ async function getQuote() {
             quoteText.classList.remove('long-quote');
         }
         quoteText.innerText = data.quoteText;
+
+        hideSpinner();
         
         // console.log(data);
         // throw new Error;
@@ -61,11 +77,12 @@ function tweetQuote() {
     window.open(twitterUrl, '_blank');
 }
 
-// On Load
-getQuote();
-
 // Load a new quote when the button is clicked
 newQuoteButton.addEventListener('click', getQuote);
 
 // Button to tweet quote
 twitterButton.addEventListener('click', tweetQuote);
+
+// On Load
+getQuote();
+// showSpinner();
