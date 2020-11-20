@@ -85,7 +85,6 @@ button:active {
 }
 
 .loader {
-  position: fixed;
   height: 120px;
   width: 120px;
   border: 16px solid #f3f3f3;
